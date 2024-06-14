@@ -1,0 +1,24 @@
+{
+  "name": "allsrvs-online/base-entity",
+  "description": "Base Entity Library to modelize JSON data",
+  "minimum-stability": "stable",
+  "keywords": [ "entity", "json", "model" ],
+  "homepage": "https://allsrvs.online/",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Theo Hollenberg",
+      "email": "theo@hollenberg.eu",
+      "role": "Lead Developer"
+    }
+  ],
+  "require": {
+    "php": ">=7.4",
+    "ext-json": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "AllSrvs\\": "src/"
+    }
+  }
+}
