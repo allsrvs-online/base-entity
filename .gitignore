@@ -13,6 +13,4 @@ desktop.ini
 # Composer
 /composer.phar
 /vendor
-/logs
-/build
 /.idea

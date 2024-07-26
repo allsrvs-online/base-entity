@@ -1,46 +1,59 @@
 <?php
-namespace AllSrvs\Base;
 
-class Entity
+namespace Base\Entity;
+class Entity implements \JsonSerializable
 {
-    protected array $properties = [];
-        private function isAssoc(array $array): bool
-        {
-            return array_keys($array) !== range(0, count($array) - 1);
+    private array $properties = [];
+
+    public function __construct(array $value)
+    {
+        if (array_keys($value) !== range(0, count($value) - 1)) {
+            $keys = array_keys($value);
+            foreach ($keys as $key) {
+                $this->__set($key, $value[$key]);
+            }
+        } else {
+            throw new \InvalidArgumentException('Value must be an associative array');
         }
-        protected function setProperty(string $name, $value): void {
-            // Check if it's an associative array. If it is, create a new Entity object.
-            if (is_array($value) && $this->isAssoc($value)) {
-                $this->properties[$name] = new Entity($value);
-                return;
-            }
+    }
 
-            // If it's not an associative array, check if it's an array of associative arrays.
-            if (is_array($value)) {
-
-            }
-                if ($this->isAssoc($value)) {
-                    $this->properties[$name] = new Entity($value);
-                    return;
-                } else {
-                    $entities = [];
-                    foreach ($value as $entity) {
-                        $entities[] = new Entity($entity);
-                    }
-                    $this->properties[$name] = $entities;
-                    return;
+    public function __set($name, $value)
+    {
+        if (is_scalar($value)) {
+            $this->properties[$name] = $value;
+        } elseif (is_array($value) && array_keys($value) !== range(0, count($value) - 1)) {
+            // It's an associative array
+            $this->properties[$name] = new Entity($value);
+        } elseif (is_array($value)) {
+            // It's an indexed array
+            $processedArray = [];
+            foreach ($value as $item) {
+                if (is_scalar($item)) {
+                    $processedArray[] = $item;
+                } elseif (is_array($item) && array_keys($item) !== range(0, count($item) - 1)) {
+                    // Element is an associative array
+                    $processedArray[] = new self($item);
+                } elseif (is_object($item)) {
+                    // Element is an object (including Entity instances)
+                    $processedArray[] = $item;
                 }
             }
-            $this->properties[$name] = $value;
+            $this->properties[$name] = $processedArray;
         }
+    }
 
-        public function __get(string $name)
-        {
-            return $this->properties[$name] ?? null;
-        }
-        public function __set(string $name, $value): void
-        {
-            $this->properties[$name] = $value;
-        }
+    public function __get($name)
+    {
+        return $this->properties[$name] ?? null;
+    }
 
+    public function jsonSerialize()
+    {
+        return $this->properties;
+    }
+
+    public function __toString()
+    {
+        return json_encode($this->properties, JSON_PRETTY_PRINT);
+    }
 }
