@@ -1,6 +1,6 @@
 <?php
 
-namespace Base\Entity;
+namespace AllSrvs\Base\Entity;
 class Entity implements \JsonSerializable
 {
     private array $properties = [];

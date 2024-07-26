@@ -1,7 +1,8 @@
 <?php
 
-namespace Base\Entity;
+namespace Tests\Base\Entity;
 
+use AllSrvs\Base\Entity\Entity;
 use PHPUnit\Framework\TestCase;
 
 class EntityTest extends TestCase
