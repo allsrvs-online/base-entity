@@ -1,6 +1,8 @@
 {
   "name": "allsrvs-online/base-entity",
   "description": "Base Entity Library to modelize JSON data",
+  "type": "library",
+  "version": "1.0",
   "minimum-stability": "stable",
   "keywords": [ "entity", "json", "model" ],
   "homepage": "https://allsrvs.online/",
