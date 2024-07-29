@@ -1,9 +1,9 @@
 <?php return array(
     'root' => array(
         'name' => 'allsrvs-online/base-entity',
-        'pretty_version' => 'dev-main',
-        'version' => 'dev-main',
-        'reference' => 'c83c3978668a28cc08d6fcca3fb93be68c3959e5',
+        'pretty_version' => '1.0',
+        'version' => '1.0.0.0',
+        'reference' => NULL,
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -11,9 +11,9 @@
     ),
     'versions' => array(
         'allsrvs-online/base-entity' => array(
-            'pretty_version' => 'dev-main',
-            'version' => 'dev-main',
-            'reference' => 'c83c3978668a28cc08d6fcca3fb93be68c3959e5',
+            'pretty_version' => '1.0',
+            'version' => '1.0.0.0',
+            'reference' => NULL,
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
