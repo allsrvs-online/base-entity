@@ -14,3 +14,7 @@ desktop.ini
 /composer.phar
 /vendor
 /.idea
+
+# Tests
+coverage.*
+\.phpunit.result.cache
